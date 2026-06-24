@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { api } from "../services/api";
 import { useNavigate } from "react-router-dom";
+import { authService } from "../services/authService";
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -16,13 +16,9 @@ export default function Login() {
         setLoading(true);
 
         try {
-            const response = await api.post("/login", {
-                email, senha
-            });
+            const response = await authService.login(email, senha);
 
-            const token = response.data.token;
-
-            localStorage.setItem("token", token);
+            localStorage.setItem("token", response.data.token);
 
             navigate("/me")
         } catch (err: any) {
