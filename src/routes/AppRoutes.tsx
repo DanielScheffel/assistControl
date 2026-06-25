@@ -4,6 +4,7 @@ import Me from "../pages/Me";
 import CadastroAssistencia from "../pages/CadastroAssistencia";
 import Usuarios from "../pages/Usuarios";
 import CadastroUsuario from "../pages/CadastroUsuario";
+import EditarUsuario from "../pages/EditarUsuario";
 
 export default function AppRoutes() {
     return (
@@ -13,6 +14,7 @@ export default function AppRoutes() {
                 <Route path="/Me" element={<Me />} />
                 <Route path="/usuarios" element={<Usuarios />} />
                 <Route path="/usuarios/novo" element={<CadastroUsuario />} />
+                <Route path="/usuarios/editar/:id" element={<EditarUsuario />} />
 
                 <Route path="/assistencia/novo" element={<CadastroAssistencia />} />
             </Routes>

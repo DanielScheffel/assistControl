@@ -8,18 +8,27 @@ interface NovoUsuario {
     tipo_usuario: string;
 }
 
+interface AtualizarUsuario {
+  nome?: string;
+  email?: string;
+  senha?: string;
+  tipo_usuario?: string;
+}
+
 export const usuarioService = {
     listar() {
         return api.get<Usuario[]>("/usuario/usuarios");
     },
 
     cadastrar(data: NovoUsuario) {
-
-        console.log("ENVIANDO:", data);
         return api.post("/usuario/cadastro-usuario", data)
     },
 
-    atualizar(id: number, data: object) {
+    buscarId(id: number) {
+        return api.get<Usuario>(`/usuario/${id}`);
+    },
+
+    atualizar(id: number, data: AtualizarUsuario) {
         return api.put(`/usuario/atualizar-usuario/${id}`, data)
     }, 
 

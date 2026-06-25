@@ -1,11 +1,35 @@
 import { useEffect, useState } from "react";
 import type { Usuario } from "../types/Usuario";
 import { usuarioService } from "../services/usuarioService";
+import { Link } from "react-router-dom";
 
 
 export default function Usuarios() {
     const [usuarios, setUsuarios] = useState<Usuario[]>([]);
     const [loading, setLoading] = useState(true);
+
+        async function excluirUsuario(id: number) {
+            const confirmar = window.confirm(
+                "Deseja realmente excluir este usuário?"
+            );
+
+            if(!confirmar) return;
+
+            try {
+                await usuarioService.deletar(id);
+
+                setUsuarios((usuariosAtuais) => 
+                    usuariosAtuais.filter(
+                        (usuario) => usuario.id_usuario !== id
+                    )
+                )
+
+                alert("Usuário excluído com sucesso!")
+            } catch (error) {
+                console.error(error);
+                alert("Erro ao excluir usuário");
+            }
+        }
 
     useEffect(() => {
         async function carregarUsuarios() {
@@ -38,6 +62,7 @@ export default function Usuarios() {
                         <th>Email</th>
                         <th>Tipo</th>
                         <th>Status</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
 
@@ -49,6 +74,13 @@ export default function Usuarios() {
                             <td>{usuario.email}</td>
                             <td>{usuario.tipo_usuario}</td>
                             <td>{usuario.status}</td>
+                            <td>
+                                <Link to={`/usuarios/editar/${usuario.id_usuario}`}>
+                                    Editar
+                                </Link>
+
+                                <button onClick={() => excluirUsuario(usuario.id_usuario)}>Excluir</button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

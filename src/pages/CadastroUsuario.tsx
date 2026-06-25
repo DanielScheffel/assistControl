@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { usuarioService } from "../services/usuarioService";
-import axios from "axios";
 
 
 export default function CadastroUsuario() {
@@ -30,16 +29,8 @@ export default function CadastroUsuario() {
             setSenha("");
             setTipoUsuario("Funcionario")
         } catch (error) {
-            // console.error(error);
-            // alert("Erro ao cadastrar usuário");
-
-            if(axios.isAxiosError(error)) {
-                // console.log(error.response?.data)4
-                console.log("STATUS:", error.response?.status);
-    console.log("DADOS:", error.response?.data);
-            }
-
-            console.error(error)
+            console.error(error);
+            alert("Erro ao cadastrar usuário");
         } finally {
             setLoading(false)
         }
