@@ -31,6 +31,27 @@ export default function Usuarios() {
             }
         }
 
+        async function alterarStatus(id: number, statusAtual: string) {
+            const novoStatus = statusAtual === "Ativo" ? "Inativo" : "Ativo";
+
+            try {
+                await usuarioService.alterarStatus(id, novoStatus);
+
+                setUsuarios((usuariosAtuais) => 
+                usuariosAtuais.map((usuario) =>
+                    usuario.id_usuario === id
+                    ? { ...usuario, status: novoStatus}
+                    : usuario
+                )
+            );
+
+            alert("Status atualizado com sucesso!")
+            } catch (error) {
+                console.error(error);
+                alert("Erro ao alterar status.")
+            }
+        }
+
     useEffect(() => {
         async function carregarUsuarios() {
             try {
@@ -80,6 +101,15 @@ export default function Usuarios() {
                                 </Link>
 
                                 <button onClick={() => excluirUsuario(usuario.id_usuario)}>Excluir</button>
+
+                                <button onClick={() => 
+                                    alterarStatus(
+                                        usuario.id_usuario,
+                                        usuario.status
+                                    )
+                                }>
+                                    {usuario.status === "Ativo" ? "Inativo" : "Ativo"}
+                                </button>
                             </td>
                         </tr>
                     ))}
