@@ -7,6 +7,7 @@ import Fornecedores from "../pages/Fornecedor/Fornecedores";
 import CadastroFornecedor from "../pages/CadastroFornecedor";
 import MainLayout from "../layouts/MainLayout";
 import Configuracoes from "../pages/configuracoes";
+import Produtos from "../pages/Produto";
 
 export default function AppRoutes() {
   return (
@@ -19,6 +20,7 @@ export default function AppRoutes() {
           <Route path="/usuarios" element={<Usuarios />} />
           <Route path="/fornecedores" element={<Fornecedores />} />
           <Route path="/fornecedores/novo" element={<CadastroFornecedor />} />
+          <Route path="/produtos" element={<Produtos />} />
 
           <Route path="/assistencia/novo" element={<CadastroAssistencia />} />
 
