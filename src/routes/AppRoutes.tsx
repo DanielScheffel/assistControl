@@ -3,7 +3,7 @@ import Login from "../pages/Login/Login";
 import Me from "../pages/Me/Me";
 import CadastroAssistencia from "../pages/CadastroAssistencia";
 import Usuarios from "../pages/Usuario/Usuarios";
-import Fornecedores from "../pages/Fornecedores";
+import Fornecedores from "../pages/Fornecedor/Fornecedores";
 import CadastroFornecedor from "../pages/CadastroFornecedor";
 import EditarFornecedor from "../pages/EditarFornecedor";
 import MainLayout from "../layouts/MainLayout";
