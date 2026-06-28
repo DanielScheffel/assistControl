@@ -36,8 +36,12 @@ export default function Login() {
             localStorage.setItem("token", response.data.token);
 
             navigate("/me");
-        } catch {
-            setErro("Email ou senha inválidos");
+        } catch (err: any) {
+            const mensagem =
+                err.response?.data?.message ||
+                    "Não foi possível realizar o login.";
+
+            setErro(mensagem);
         } finally {
             setLoading(false);
         }
@@ -80,11 +84,11 @@ export default function Login() {
                         />
                     </Field>
 
-                    {erro && (
-                        <p style={{ color: "red", fontSize: 14 }}>
-                            {ErrorMessage}
-                        </p>
-                    )}
+                   {erro && (
+                    <ErrorMessage>
+                        {erro}
+                    </ErrorMessage>
+                   )}
 
                     <Button
                         type="submit"

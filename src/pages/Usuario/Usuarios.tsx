@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import type { Usuario } from "../../types/Usuario";
 import { usuarioService } from "../../services/usuarioService";
-import { Link } from "react-router-dom";
 import {
   ActionButton,
-  ActionLink,
   Actions,
   Search,
   StatusBadge,
@@ -22,6 +20,8 @@ export default function Usuarios() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [openModal, setOpenModal] = useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false);
+  const [usuarioSeleciona, setUsuarioSelecionado] = useState<Usuario | null>(null);
 
   const usuariosFiltrados = usuarios.filter((usuario) => {
     const termo = search.toLowerCase();
@@ -93,6 +93,16 @@ export default function Usuarios() {
     return <h2>Carregando usuários....</h2>;
   }
 
+  function abrirModalEdicao(usuario: Usuario) {
+    setUsuarioSelecionado(usuario);
+    setOpenEditModal(true)
+  }
+
+  function fecharModalEdicao() {
+    setUsuarioSelecionado(null);
+    setOpenEditModal(false);
+  }
+
   return (
     <>
       <PageHeader
@@ -142,12 +152,10 @@ export default function Usuarios() {
               </td>
               <td>
                 <Actions>
-                  <ActionLink
-                    as={Link}
-                    to={`/usuarios/editar/${usuario.id_usuario}`}
-                  >
-                    Editar
-                  </ActionLink>
+                  <ActionButton
+                    onClick={() => abrirModalEdicao(usuario)}>
+                      Editar
+                    </ActionButton>
 
                   <ActionButton
                     onClick={() => excluirUsuario(usuario.id_usuario)}
@@ -175,6 +183,7 @@ export default function Usuarios() {
         onClose={() => setOpenModal(false)}
       >
         <UsuarioForm
+          mode="create"
           onCancel={() => setOpenModal(false)}
           onSuccess={async () => {
             setOpenModal(false);
@@ -182,6 +191,24 @@ export default function Usuarios() {
             await carregarUsuarios();
           }}
         />
+      </Modal>
+
+      <Modal
+        open={openEditModal}
+        title="Editar Usuário"
+        onClose={fecharModalEdicao}
+      >
+        {usuarioSeleciona && (
+          <UsuarioForm
+            mode="edit"
+            usuario={usuarioSeleciona}
+            onCancel={fecharModalEdicao}
+            onSuccess={async () => {
+              fecharModalEdicao();
+              await carregarUsuarios();
+            }}
+          />
+        )}
       </Modal>
     </>
   );

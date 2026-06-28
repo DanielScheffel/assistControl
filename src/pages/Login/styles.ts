@@ -62,6 +62,13 @@ export const Label = styled.label`
 `;
 
 export const ErrorMessage = styled.p`
-  color: ${({ theme }) => theme.colors.danger};
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+
+  color: #ef4444;
+
+  padding: 12px;
+  border-radius: 8px;
+
   font-size: 14px;
 `;

@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { type ReactNode } from "react";
 
 import {
   Overlay,
@@ -16,6 +16,7 @@ interface ModalProps {
 }
 
 export function Modal({ open, title, children, onClose }: ModalProps) {
+
   if (!open) {
     return null;
   }
