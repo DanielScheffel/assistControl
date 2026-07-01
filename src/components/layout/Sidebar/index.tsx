@@ -21,6 +21,10 @@ export function Sidebar() {
                     <LuHouse size={18} />
                     <span>Início</span>
                 </NavItem>
+                <NavItem to="/assistencias" >
+                    <LuWrench size={18} />
+                    <span>Assistências</span>
+                </NavItem>
                 <NavItem to="/usuarios">
                     <LuUsers size={18} />
                     <span>Usuários</span>

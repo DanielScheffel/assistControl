@@ -67,6 +67,32 @@ export default function Produtos() {
     );
   });
 
+  async function excluirProduto(id: number) {
+    const confirmar = window.confirm(
+      "Deseja realmente excluir este produto?"
+    );
+
+    if(!confirmar) return;
+
+    try {
+    await produtoService.deletar(id);
+
+    setProdutos((produtosAtuais) =>
+      produtosAtuais.filter(
+        (produto) => produto.id_produto !== id
+      )
+    );
+
+    alert("Produto excluído com sucesso!");
+  } catch (error: any) {
+    const mensagem =
+      error.response?.data?.message ||
+      "Erro ao excluir produto.";
+
+    alert(mensagem);
+  }
+  }
+
   if (loading) {
     return <h2>Carregando produtos...</h2>;
   }
@@ -117,6 +143,10 @@ export default function Produtos() {
                 <Actions>
                   <ActionButton onClick={() => abrirModalEdicao(produto)}>
                     Editar
+                  </ActionButton>
+
+                  <ActionButton onClick={() => excluirProduto(produto.id_produto)}>
+                    Excluir
                   </ActionButton>
                 </Actions>
               </td>

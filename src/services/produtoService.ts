@@ -29,4 +29,8 @@ export const produtoService = {
     ) {
         return api.put(`/produtos/atualizar-produto/${id}`, data);
     },
+
+    deletar(id: number) {
+        return api.delete(`/produtos/deletar-produto/${id}`)
+    }
 }
