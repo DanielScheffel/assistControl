@@ -11,6 +11,7 @@ import Assistencias from "../pages/Assistencia";
 import NovaAssistencia from "../pages/Assistencia/Nova";
 import DetalhesAssistencia from "../pages/Assistencia/Detalhe";
 import EtiquetaAssistencia from "../pages/Assistencia/Etiqueta/Etiqueta";
+import Lojas from "../pages/Loja";
 
 export default function AppRoutes() {
   return (
@@ -24,6 +25,7 @@ export default function AppRoutes() {
           <Route path="/fornecedores" element={<Fornecedores />} />
           <Route path="/fornecedores/novo" element={<CadastroFornecedor />} />
           <Route path="/produtos" element={<Produtos />} />
+          <Route path="/lojas" element={<Lojas />} />
 
           <Route path="/assistencias" element={<Assistencias />} />
           <Route path="/assistencia/novo" element={<NovaAssistencia />} />

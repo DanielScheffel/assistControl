@@ -45,6 +45,10 @@ export function Sidebar() {
                     <LuSettings size={18} />
                     <span>Configurações</span>
                 </NavItem>
+                <NavItem to="/lojas">
+                    <LuBuilding size={18} />
+                    <span>Lojas</span>
+                </NavItem>
             </Nav>
 
             <Footer>
