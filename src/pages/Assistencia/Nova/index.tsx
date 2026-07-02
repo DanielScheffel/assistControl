@@ -50,7 +50,7 @@ export default function NovaAssistencia() {
   }, []);
 
   const produtoSelecionado = produtos.find(
-    (produto) => produto.id_produto === Number(produtoId)
+    (produto) => produto.id_produto === Number(produtoId),
   );
 
   async function handleSubmit(e: React.FormEvent) {
@@ -66,22 +66,36 @@ export default function NovaAssistencia() {
       formData.append("descricao_peca", descricaoPeca);
       formData.append("loja_id", lojaId);
       formData.append("produto_id", produtoId);
-    //   formData.append("status_assistencia_id", "1") // Status inicial: Aberto
+      //   formData.append("status_assistencia_id", "1") // Status inicial: Aberto
 
       imagens.forEach((imagem) => {
         formData.append("imagens", imagem);
       });
 
-      await assistenciaService.cadastrar(formData);
+      const response = await assistenciaService.cadastrar(formData);
 
-      navigate("/assistencias");
+      const { id, codigo_interno } = response.data;
+
+      abrirEtiqueta(id);
+
+      alert(`Assistência ${codigo_interno} cadastrada com sucesso.`);
+
+      navigate(`/assistencia/${id}/etiqueta`);
     } catch (error: any) {
-  console.error(error.response?.data);
-  alert(error.response?.data?.message || "Erro ao cadastrar assistência.");
-} finally {
-  setLoading(false);
-}
+      console.error(error.response?.data);
+      alert(error.response?.data?.message || "Erro ao cadastrar assistência.");
+    } finally {
+      setLoading(false);
+    }
   }
+
+  function abrirEtiqueta(id: number) {
+  window.open(
+    `http://localhost:3000/etiqueta/${id}`,
+    "_blank",
+    "noopener,noreferrer"
+  );
+}
 
   return (
     <Container>

@@ -7,6 +7,8 @@ export const Container = styled.div`
 
 export const HeaderActions = styled.div`
   margin-bottom: 24px;
+  display: flex;
+  gap: 12px;
 `;
 
 export const Title = styled.div`

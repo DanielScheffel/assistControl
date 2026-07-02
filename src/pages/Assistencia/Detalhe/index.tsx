@@ -131,6 +131,14 @@ console.log("Token:", localStorage.getItem("token"));
       >
         Voltar
       </Button>
+
+      <Button
+        type="button"
+        fullWidth={false}
+        onClick={() => navigate(`/assistencia/${id}/etiqueta`)}
+        >
+          Gerar Etiqueta
+        </Button>
     </HeaderActions>
 
     <Title>

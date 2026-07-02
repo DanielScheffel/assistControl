@@ -10,6 +10,7 @@ import Produtos from "../pages/Produto";
 import Assistencias from "../pages/Assistencia";
 import NovaAssistencia from "../pages/Assistencia/Nova";
 import DetalhesAssistencia from "../pages/Assistencia/Detalhe";
+import EtiquetaAssistencia from "../pages/Assistencia/Etiqueta/Etiqueta";
 
 export default function AppRoutes() {
   return (
@@ -27,7 +28,7 @@ export default function AppRoutes() {
           <Route path="/assistencias" element={<Assistencias />} />
           <Route path="/assistencia/novo" element={<NovaAssistencia />} />
           <Route path="/assistencia/:id" element={<DetalhesAssistencia />} />
-
+          <Route path="/assistencia/:id/etiqueta" element={<EtiquetaAssistencia />} />  
           <Route path="/configuracoes" element={<Configuracoes />} />
         </Route>
       </Routes>
