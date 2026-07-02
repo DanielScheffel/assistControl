@@ -1,4 +1,4 @@
-import { LuBuilding, LuHouse, LuPackage, LuSettings, LuShieldCheck, LuUsers, LuWrench } from "react-icons/lu";
+import { LuBuilding, LuChartColumn, LuHouse, LuPackage, LuSettings, LuShieldCheck, LuUsers, LuWrench } from "react-icons/lu";
 import { Aside, Avatar, Footer, Logo, Nav, NavItem, UserInfo } from "./styled";
 import { getUserFromToken } from "../../../utils/getUserFromToken";
 
@@ -20,6 +20,10 @@ export function Sidebar() {
                 <NavItem to="/me">
                     <LuHouse size={18} />
                     <span>Início</span>
+                </NavItem>
+                <NavItem to="/dashboard">
+                    <LuChartColumn size={18} />
+                    <span>Dashboard</span>
                 </NavItem>
                 <NavItem to="/assistencias" >
                     <LuWrench size={18} />
